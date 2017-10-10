@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+		<h1> Index page </h1>
+
+		<form action="/process" method='post'>
+			Name: <input type="text" name="name"> 
+			<br>
+			<br>
+			<label>Message:</label>
+			<br>
+			<textarea rows="5" cols="70" name="text"></textarea>
+			<br>
+			<br>
+			<input type='submit' value='Post Message'>
+		</form>	
+		<hr>
+	    <% for (var x in posted) { %>
+	        <h4> Name: <%= posted[x].name %> </h4>
+	        <h5> Message: <%= posted[x].text %> </h5>
+	        <% for (var comment of posted[x].comments) { %>
+	        	<h4> Name: <%= comment.name %> </h4>
+	        	<h5> Comment: <%= comment.text %> </h5>
+	        <% } %>
+			<form action="/post/<%= posted[x].id %>" method='post'>
+				Name: <input type="text" name="name"> 
+				<br>
+				<br>
+				<label>Comment:</label>
+				<br>
+				<textarea rows="4" cols="50" name="text"></textarea>
+				<br>
+				<br>
+				<input type='submit' value='Post Comment'>
+			</form>		        
+	        <hr>
+	    <% } %>			
+
+
+
+	</body>
+	</html>
